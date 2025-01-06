@@ -40,6 +40,16 @@ contract Token {
         emit Transfer(address(0), msg.sender, _totalSupply);
     }
 
+    function mint(uint256 _amount) external {
+        balances[msg.sender] = balances[msg.sender].add(_amount);
+        totalSupply = totalSupply.add(_amount);
+    }
+
+    function burn(uint256 _amount) external {
+        balances[msg.sender] = balances[msg.sender].sub(_amount);
+        totalSupply = totalSupply.sub(_amount);
+    }
+
     /**
         @notice Getter to check the current balance of an address
         @param _owner Address to query the balance of
